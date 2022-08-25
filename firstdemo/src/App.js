@@ -4,6 +4,9 @@ import Demo1 from './component/Demo1'
 import Demo2 from './component/Demo2'
 import Demo3 from './component/Demo3'
 import Demo3Main from './component/Demo3Main'
+
+import Demo4 from './component/Demo4PubSubJS'
+import Demo4C from './component/Demo4PubSubJS_C'
 function App() {
   return (
     <div className="App">
@@ -20,10 +23,21 @@ function App() {
         >
           Learn Reactzzzz
         </a>
-        <Demo1/>
-        <Demo2/> 
-        <Demo3/> 
-        <Demo3Main/>
+        <div className="appDiv1">
+          <div>
+            <Demo1/>
+            <Demo2/> 
+            <Demo3/> 
+            <Demo3Main/>
+            <Demo4/>
+            <Demo4C/>
+          </div>
+          <div>
+            <Demo4/>
+            <Demo4C/>
+          </div>
+        </div>
+       
       </header>
     </div>
   );

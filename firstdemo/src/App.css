@@ -36,3 +36,39 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+.appDiv1{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.appDiv1>div{
+  width: 350px;
+}
+
+.flex_j_start {
+  justify-content: flex-start !important;
+ }
+  /* 从右排列 */
+ .flex_j_end {
+  justify-content: flex-end !important;
+ }
+ 
+ /* 处于x轴上方方向位置 */
+ .flex_a_start {
+  align-items: flex-start !important;
+ }
+ 
+ /* 处于x轴下方方向位置 */
+ .flex_a_end {
+  align-items: flex-end !important;
+ }
+
+ 
+
+ 
