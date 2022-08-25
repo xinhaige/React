@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Demo1 from './component/Demo1'
 import Demo2 from './component/Demo2'
-
+import Demo3 from './component/Demo3'
 function App() {
   return (
     <div className="App">
@@ -21,6 +21,7 @@ function App() {
         </a>
         <Demo1/>
         <Demo2/> 
+        <Demo3/> 
       </header>
     </div>
   );
