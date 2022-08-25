@@ -10,8 +10,7 @@ export default class index extends Component {
         <ul className={demo3.ul}>
           {
             this.state.list.map((item)=>{
-               debugger
-               return  <li key={item.id}><input ref={(e)=>{this.saveInput(e,item.id)}} type="checkbox" checked={item.ischeck} onClick={(e)=>{this.itemClick(e,item.id)}}/>{item.name}</li>
+               return  <li className={demo3.li} key={item.id}><input ref={(e)=>{this.saveInput(e,item.id)}} type="checkbox" defaultChecked={item.ischeck} onClick={(e)=>{this.itemClick(e,item.id)}}/>{item.name} <button className={demo3.btnclose} onClick={()=>{this.btnClick(item.id)}}>X</button> </li>
             })
           }
           <li> <input type="checkbox" onClick={this.allclick}/>已完成{this.state.list.filter((item)=>{return item.ischeck==true}).length}/全部{this.state.list.length}</li>
@@ -22,7 +21,17 @@ export default class index extends Component {
    saveInput=(e,id)=>{
        
    }
-
+   btnClick=(id)=>{
+    let list=this.state.list;
+    let index=0;
+    list.forEach((item,i)=>{
+      if(item.id==id){
+        index=i
+      }
+    })
+    list.splice(index,1)
+    this.setState(list);
+}
   changeData=(event)=>{
       if (event.key=="Enter") {
         let list=this.state.list;
