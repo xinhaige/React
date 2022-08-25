@@ -5,9 +5,12 @@ import Demo2 from './component/Demo2'
 import Demo3 from './component/Demo3'
 import Demo3Main from './component/Demo3Main'
 
+import Demo5Route from './pages/Demo5Route' //路由
+
 import Demo4 from './component/Demo4PubSubJS'
 import Demo4C from './component/Demo4PubSubJS_C'
 function App() {
+     
   return (
     <div className="App">
       <header className="App-header">
@@ -31,10 +34,11 @@ function App() {
             <Demo3Main/>
             <Demo4/>
             <Demo4C/>
-          </div>
-          <div>
             <Demo4/>
             <Demo4C/>
+          </div>
+          <div>
+          <Demo5Route/>
           </div>
         </div>
        
