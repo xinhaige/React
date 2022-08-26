@@ -6,24 +6,28 @@ import reportWebVitals from './reportWebVitals';
 
 import {HashRouter,BrowserRouter} from 'react-router-dom' //路由
 
+import {Provider} from 'react-redux'//会把store参数 传给每一个容器
 import store from './Redux/store'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter> 
+     <Provider store={store}>  
+        <BrowserRouter>
+          <App />
+        </BrowserRouter> 
+    </Provider>
 );
 
 //检测redux store数据是否发生改变，改变则重新渲染组件
-store.subscribe(()=>{
-  root.render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter> 
-   );
-})
+//使用react-redux 容器会自己检测
+// store.subscribe(()=>{
+//   root.render(
+//     <BrowserRouter>
+//       <App />
+//     </BrowserRouter> 
+//    );
+// })
 // root.render(
 //   <React.StrictMode>
 //     <App />

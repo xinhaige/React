@@ -8,8 +8,12 @@ import Demo3Main from './component/Demo3Main'
 import Demo5Route from './pages/Demo5Route' //路由
 
 
-import Demo6rudex from './component/Demo6rudex' //前端ui
+import Demo6rudex from './component/Demo6rudex' //前端ui 与下面的发生联系
 import Demo6 from './containers/demo6' //容器
+
+import Demo6UIandView from './containers/demo6UIandView'//等于上面两个文件
+import UserContainer from './containers/userContainer'
+
 import store from './Redux/store'
 
 import Demo4 from './component/Demo4PubSubJS'
@@ -46,7 +50,10 @@ function App() {
           <Demo5Route/>
 
           {/* <Demo6rudex/> */}
-          <Demo6 store={store}/>
+          {/* <Demo6 store={store}/>  index.js 已经帮你传了*/ }
+          {/* <Demo6/> */}
+          <Demo6UIandView/>
+          <UserContainer/>
           </div>
         </div>
        

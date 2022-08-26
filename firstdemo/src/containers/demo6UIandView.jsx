@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
+//引入前端ui
+import demoUi from '../component/Demo6rudex';
+import {addAction,delAction,addAsyncAction} from '../Redux/count_action'
+import {connect} from 'react-redux'
 
-export default class index extends Component {
+
+//定义ui组件
+class index extends Component {
     state={
         txt:0
     }
@@ -29,3 +35,25 @@ export default class index extends Component {
     })
   }
 }
+
+
+//暴露容器组件
+export default connect(
+    state=>({num:state}),
+    {
+         add:addAction,//最原始的调用 store.dispatch({type,num})  
+         del:delAction,
+         addAsync:addAsyncAction,
+         addAsyncAction:addAsyncAction
+    }
+ )(index);
+
+
+
+
+
+
+
+
+
+

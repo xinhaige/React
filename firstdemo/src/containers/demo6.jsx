@@ -22,6 +22,27 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
+//原始
+//let con=connect(mapStateToProps,mapDispatchToProps)(demoUi);
+//简写1
+// let con=connect(
+//     state=>({num:state}),
+//    dispatch=> ({
+//          add:Num=> dispatch(addAction(Num)),//最原始的调用 store.dispatch({type,num})  
+//          del:Num=> dispatch(delAction(Num)),
+//          addAsync:(Num,time)=> dispatch(addAsyncAction(Num,time))
+//        })
+//     )(demoUi);
 
-let con=connect(mapStateToProps,mapDispatchToProps)(demoUi);
+//优化三
+//react-redux api优化 会调dispatch   即第二个参数可以是对象
+    let con=connect(
+        state=>({num:state}),
+        {
+             add:addAction,//最原始的调用 store.dispatch({type,num})  
+             del:delAction,
+             addAsync:addAsyncAction,
+             addAsyncAction:addAsyncAction
+        }
+     )(demoUi);
 export default con;
