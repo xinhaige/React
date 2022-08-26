@@ -7,6 +7,11 @@ import Demo3Main from './component/Demo3Main'
 
 import Demo5Route from './pages/Demo5Route' //路由
 
+
+import Demo6rudex from './component/Demo6rudex' //前端ui
+import Demo6 from './containers/demo6' //容器
+import store from './Redux/store'
+
 import Demo4 from './component/Demo4PubSubJS'
 import Demo4C from './component/Demo4PubSubJS_C'
 function App() {
@@ -39,6 +44,9 @@ function App() {
           </div>
           <div>
           <Demo5Route/>
+
+          {/* <Demo6rudex/> */}
+          <Demo6 store={store}/>
           </div>
         </div>
        

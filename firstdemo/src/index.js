@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 
 import {HashRouter,BrowserRouter} from 'react-router-dom' //路由
 
+import store from './Redux/store'
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,6 +15,15 @@ root.render(
       <App />
     </BrowserRouter> 
 );
+
+//检测redux store数据是否发生改变，改变则重新渲染组件
+store.subscribe(()=>{
+  root.render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter> 
+   );
+})
 // root.render(
 //   <React.StrictMode>
 //     <App />
