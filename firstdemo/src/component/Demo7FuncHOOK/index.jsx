@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React,{ Component,Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import {createRoot} from 'react-dom/client'
 
@@ -52,12 +52,18 @@ function Index() {
     }
 
     return (
-        <div>
-            <h3 ref={myRef}>这是类式组件  {num}</h3>
-            <button onClick={btnClick}>点位+1</button>
-            <button onClick={btnUnmont}>清空组件</button>
-            <button onClick={btnShow}>提示输出</button>
-        </div>
+        // <div>
+        //     <h3 ref={myRef}>这是类式组件  {num}</h3>
+        //     <button onClick={btnClick}>点位+1</button>
+        //     <button onClick={btnUnmont}>清空组件</button>
+        //     <button onClick={btnShow}>提示输出</button>
+        // </div>
+        <Fragment> <></>
+         <h3 ref={myRef}>这是类式组件  {num}</h3>
+         <button onClick={btnClick}>点位+1</button>
+         <button onClick={btnUnmont}>清空组件</button>
+         <button onClick={btnShow}>提示输出</button>
+       </Fragment>
     )
 
 }
