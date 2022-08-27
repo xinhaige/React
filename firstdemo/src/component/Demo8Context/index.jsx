@@ -17,7 +17,8 @@ import ReactDOM from 'react-dom'
 
 
 ///四 getDerivedStateFromError
-//会将这个组件的子组将出错信息放在这里 返回state对象
+//会将这个组件的子组将出错信息放在这里 返回state对象  
+//componentDidCatch 渲染组件时出错
 let MyContext = React.createContext();
 
 export default class index extends Component {
@@ -28,6 +29,9 @@ export default class index extends Component {
     static getDerivedStateFromError(error) {
         console.log("error", error);
         return { hasError: error }
+    }
+    componentDidCatch(){
+        console.log("渲染组件时出错");
     }
 
     btnClick = () => {
