@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .btn {
+            padding: 2px 4px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            background: pink;
+        }
+        .wrap {
+            width: 200px;
+            height: 300px;
+            padding: 20px;
+            display: none;
+            position: fixed;
+            left: 40%;
+            top: 20%;
+            background: white;
+            border-radius: 10px;
+        }
+        .mask {
+            width: 100%;
+            /* height: 100%; */
+            height: 100vh;
+            position: fixed;
+            left: 0%;
+            top: 0%;
+            opacity: 0.3;
+            display: none;
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div>
+            <button class="btn" type="button" onclick="loginFn()">点击登录</button>
+        </div>
+        <input id="txt"/>
+        <div>
+            <button class="btn" type="button" onclick="btnAdd()">闭包++</button>
+        </div>
+        <!-- 遮罩层 -->
+        <div class="mask"></div>
+ 
+        <div class="wrap">
+            <div>
+                <label>
+                    手机号: <input type="text" placeholder="请输入手机号">
+                </label>
+            </div>
+            <div>
+                <label>
+                    验证码: <input type="text" placeholder="请输入验证码">
+                </label>
+            </div>
+            <button type="button" onclick="loginFn1()">登录</button>
+            <button type="button" onclick="closeFn()">关闭</button>
+        </div>
+    </div>
+ 
+    <script>
+        // 获取dom
+        var mask = document.querySelector('.mask')
+        var wrap = document.querySelector('.wrap')
+        var inps = document.querySelectorAll('input')
+ 
+        // 登录的点击事件
+        function loginFn() {
+            mask.style.display = 'block'
+            wrap.style.display = 'block'
+        }
+ 
+        function closeFn() {
+            mask.style.display = 'none'
+            wrap.style.display = 'none'
+        }
+ 
+        function loginFn1() {
+            // 判断手机号和验证码不能为空
+            // // if (inps[0].value != '' && inps[1].value != '') {
+            // if (inps[0].value && inps[1].value) {
+            //     alert(`${inps[0].value}--------${inps[1].value}`)
+            // // } else if (inps[0].value == '') {
+            // } else if (!inps[0].value) {
+            //     alert('请输入手机号')
+            // } else if (inps[1].value == '') {
+            //     alert('请输入验证码')
+            // }
+ 
+ 
+            if (inps[0].value == '') {
+                alert('请输入手机号')
+                return
+            } else if (inps[1].value == '') {
+                alert('请输入验证码')
+                return
+            }
+            alert('添加成功')
+        }
+
+
+
+
+        //闭包
+        
+        function add(){
+            let num=0;
+            return ()=>{
+                return num++;
+            }
+        }
+        let addN=add();
+
+        function btnAdd(){
+             document.getElementById("txt").value= addN();
+        }
+    </script>
+</body>
+</html>
