@@ -4,6 +4,7 @@ import Demo1 from './component/Demo1'
 import Demo2 from './component/Demo2'
 import Demo3 from './component/Demo3'
 import Demo3Main from './component/Demo3Main'
+import Demo7FuncHOOK from './component/Demo7FuncHOOK'
 
 import Demo5Route from './pages/Demo5Route' //路由
 
@@ -45,6 +46,7 @@ function App() {
             <Demo4C/>
             <Demo4/>
             <Demo4C/>
+            <Demo7FuncHOOK/>
           </div>
           <div>
           <Demo5Route/>
