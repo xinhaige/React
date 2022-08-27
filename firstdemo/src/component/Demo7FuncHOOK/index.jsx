@@ -33,8 +33,13 @@ function Index() {
             clearInterval(timer);
         } //返回的函数相当于 类式componentWillUnmount（结束前函数）函数
     },[]);//第二个参数不填，检测所有参数，空数组 谁也不检测，只执行一次  ；想检测谁在数组填谁
-
-
+    
+    
+    let myRef=React.useRef();//相当于 类组件使用 React.createRef();
+    function btnShow() {
+        console.log("myRef",myRef);
+       alert(myRef.current.innerText)
+    }
     function btnClick() {
         console.log("bth");
         setNum(num=> { return ++num});
@@ -48,9 +53,10 @@ function Index() {
 
     return (
         <div>
-            <h3>这是类式组件  {num}</h3>
+            <h3 ref={myRef}>这是类式组件  {num}</h3>
             <button onClick={btnClick}>点位+1</button>
-            <button onClick={btnUnmont}>点位+1</button>
+            <button onClick={btnUnmont}>清空组件</button>
+            <button onClick={btnShow}>提示输出</button>
         </div>
     )
 
