@@ -1,4 +1,4 @@
-import React, { Component, lazy, Suspense,LazyExoticComponent  } from 'react'
+import React, { Component, lazy, Suspense} from 'react'
 import { Link, HashRouter, Route, Routes, useParams, useNavigate, Navigate, useRoutes } from 'react-router-dom' //路由
 //import Home from '../Home'
 // import About from '../About'
