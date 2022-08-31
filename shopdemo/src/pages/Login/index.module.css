@@ -1,0 +1,30 @@
+.login{
+    height: 300px;
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-200px,-150px);
+    background-color: skyblue;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px 2px gray;
+
+    display: flex;
+    flex-direction: column;
+  }
+  .title{
+    font-size: 28px;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    font-weight: bolder;
+  }
+  .form{
+    padding: 5px 20px;
+  }
+  .headImg{
+    box-shadow: 0px 0px 5px 1px grey;
+    margin-top: -62px;
+    margin-left: 20px;
+    position: absolute;
+  }
