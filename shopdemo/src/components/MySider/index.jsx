@@ -23,18 +23,22 @@ function getItem(label, key, icon, children, type) {
     };
 }
 
-export default function Index() {
+export default function Index(props) {
+    const {setColl}=props;
+
     let navigate=useNavigate();
     const items = [
-        getItem('菜单  1', 'Page1', <PieChartOutlined />),
-        getItem('菜单  2', 'Page2', <DesktopOutlined />),
+        getItem('菜单  1', 'page1', <PieChartOutlined />),
+        getItem('菜单  2', 'page2', <DesktopOutlined />),
     ];
     const onClick=({ item, key, keyPath, domEvent })=>{
+        debugger
         navigate(`/home/${key}`);
     }
     const [collapsed, setCollapsed] = useState(false);
+    
     const toggleCollapsed = () => {
-        console.log("@@@");
+        setColl(!collapsed)//sider
         setCollapsed(!collapsed);
     };
 
@@ -58,13 +62,14 @@ export default function Index() {
                 onClick={toggleCollapsed}
                 style={{
                     marginBottom: 16,
+                    marginLeft:15
                 }}
             >
                 {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             </Button>
             <Menu
-                defaultSelectedKeys={['1']}
-                defaultOpenKeys={['sub1']}
+                defaultSelectedKeys={[]}
+                defaultOpenKeys={[]}
                 mode="inline"
                 theme="dark"
                 inlineCollapsed={collapsed}
@@ -73,6 +78,7 @@ export default function Index() {
                 openKeys={openKeys}
                 onOpenChange={onOpenChange}
                 onClick={onClick}
+                
             />
         </div>
     )

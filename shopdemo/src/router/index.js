@@ -7,7 +7,7 @@ import Page2  from '../pages/Page2'
 
 let list=[
     {
-        path:'/Home',
+        path:'/home',
         element:<Home></Home>,
         children:[
             {
@@ -20,11 +20,11 @@ let list=[
             }
         ]
     },{
-        path:'/Login',
+        path:'/login',
         element:<Login></Login>
     },{
         path:'/',
-        element:<Navigate to="/Home"/>
+        element:<Navigate to="/login"/>
     }
 ]
 export default list

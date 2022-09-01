@@ -3,6 +3,8 @@ import myCss from './index.module.css'
 import { Button, Checkbox, Form, Input, Avatar, message } from 'antd';
 import { useNavigate,useLocation} from 'react-router-dom'
 
+import { useSelector, useDispatch } from 'react-redux'
+import {setName} from '../../store/userAction'
 export default (props) => {
   let navigate = useNavigate();
   console.log("navigate",navigate);
@@ -10,11 +12,14 @@ export default (props) => {
   console.log("location",location);
   // let { state, setState } = useState({ name: "wodfe" })
   let [longinForm] = Form.useForm();
+  let dispatch=useDispatch();
   function onFinish(obj) {
     const { username, password } = obj;
     if (username == "admin" && password == "123456") {
       message.success('login in success');
-      
+   
+       dispatch(setName({name:username,password:password}));
+
       //第一种使用方式：指定具体的路径
       navigate('/home', {
         replace: false,
