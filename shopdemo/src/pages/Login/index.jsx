@@ -19,7 +19,8 @@ export default (props) => {
       message.success('login in success');
    
        dispatch(setName({name:username,password:password}));
-
+       localStorage.setItem("isLogin","true")
+       localStorage.setItem("name",username)
       //第一种使用方式：指定具体的路径
       navigate('/home', {
         replace: false,

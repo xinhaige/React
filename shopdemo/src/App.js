@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 function App() {
   let user=useSelector(state=>state.user.user)
-  debugger
+  let isLogin=localStorage.getItem("isLogin")==="true"?true:false;
   //生成路由 没登陆则回到login
   const list=routers.map(Item=>{
      return {
@@ -16,7 +16,7 @@ function App() {
         children:Item.children==undefined?null:Item.children.map(child=>{
           return {
             ...child,
-            element:user.isLogin?child.element:<Navigate to="/login"/>
+            element:isLogin?child.element:<Navigate to="/login"/>
           }
         })
      }

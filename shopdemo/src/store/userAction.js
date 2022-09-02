@@ -12,7 +12,6 @@ const incrementAsync = createAsyncThunk(
     name:"",
     password:""
  }
-
 export const counterSlice = createSlice({
   name: 'user',
   initialState: {

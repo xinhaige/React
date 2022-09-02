@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { decrement, increment,incrementAsync ,incrementByAmount} from '../../store/action'
 
 
+import MyCarousel from '../../common/MyCarousel'
 export default function Index() {
    let {pathname} =useLocation();
   
@@ -62,7 +63,8 @@ export default function Index() {
           <Button onClick={del}>del</Button>
           <Button onClick={addAsync}>incrementAsync</Button>
           <Button onClick={addNUM}>addNUM</Button>
-
+          
+          <MyCarousel width={500} height={300} list={[{txt:"lable1"},{txt:"lable2"},{txt:"lable3"}]}/>
           <Outlet/>
 
         </Content>
