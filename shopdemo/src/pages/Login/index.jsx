@@ -5,6 +5,8 @@ import { useNavigate,useLocation} from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
 import {setName} from '../../store/userAction'
+import headImg from '../../Imgs/yasuo.jpg'
+
 export default (props) => {
   let navigate = useNavigate();
   console.log("navigate",navigate);
@@ -49,7 +51,8 @@ export default (props) => {
   return (
     <div className={myCss.login}>
       <div className={myCss.title}>
-        <Avatar className={myCss.headImg} size={64} style={{ backgroundColor: '#87d068' }} src={require("../../Imgs/yasuo.jpg")} />
+        {/* <Avatar className={myCss.headImg} size={64} style={{ backgroundColor: '#87d068' }} src={require("../../Imgs/yasuo.jpg")} /> */}
+        <Avatar className={myCss.headImg} size={64} style={{ backgroundColor: '#87d068' }} src={headImg} />
         Login In
       </div>
       <div className={myCss.form}>
