@@ -1,39 +1,39 @@
-import React, { useState,useEffect,Fragment } from 'react'
-import { useParams, useLocation, useSearchParams,Outlet, Routes, Route } from 'react-router-dom'
+import React, { useState, useEffect, Fragment } from 'react'
+import { useParams, useLocation, useSearchParams, Outlet, Routes, Route } from 'react-router-dom'
 import { Layout, Button, Dropdown, Menu, PageHeader, Row, Tag, Typography } from 'antd'
 import myCss from './index.module.css'
 import MyPageHeader from '../../components/MyPageHeader'
 import MySider from '../../components/MySider'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment,incrementAsync ,incrementByAmount} from '../../store/action'
+import { decrement, increment, incrementAsync, incrementByAmount } from '../../store/action'
 
 
 import MyCarousel from '../../common/MyCarousel'
 export default function Index() {
-   let {pathname} =useLocation();
-  
-  const { Header, Footer, Sider, Content } = Layout;
-  
-  const count = useSelector(state => state.counter.value)
- 
-  const dispatch = useDispatch()
- 
-  useEffect(()=>{
-    console.log(count);
-  },[count])
+  let { pathname } = useLocation();
 
-  function add(){
+  const { Header, Footer, Sider, Content } = Layout;
+
+  const count = useSelector(state => state.counter.value)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    console.log(count);
+  }, [count])
+
+  function add() {
     dispatch(increment())
   }
-  function del(){
+  function del() {
     dispatch(increment())
   }
-  function addNUM(){
+  function addNUM() {
     dispatch(incrementByAmount(2))
   }
 
-  function addAsync(){
+  function addAsync() {
     dispatch(incrementAsync(2))
   }
 
@@ -41,8 +41,8 @@ export default function Index() {
 
 
 
-  let [iscoll,setColl]=useState(false);
-  const changeColl=(param)=>{
+  let [iscoll, setColl] = useState(false);
+  const changeColl = (param) => {
     setColl(param);
   }
 
@@ -50,22 +50,31 @@ export default function Index() {
   return (
     <Layout className={myCss.homeLayout}>
       <Header className={myCss.header}>
-        <MyPageHeader/>
+        <MyPageHeader />
       </Header>
       <Layout>
         <Sider
-        collapsed={iscoll}
+          collapsed={iscoll}
         >
-          <MySider  setColl={changeColl}/>
-         </Sider>
-        <Content> 
-          <Button onClick={add}>add</Button>
-          <Button onClick={del}>del</Button>
-          <Button onClick={addAsync}>incrementAsync</Button>
-          <Button onClick={addNUM}>addNUM</Button>
-          
-          <MyCarousel width={500} height={300} list={[{txt:"lable1"},{txt:"lable2"},{txt:"lable3"}]}/>
-          <Outlet/>
+          <MySider setColl={changeColl} />
+        </Sider>
+        <Content>
+          <div className={myCss.myCentent}>
+            <div className={myCss.firstDiv}>
+              <Button onClick={add}>add</Button>
+              <Button onClick={del}>del</Button>
+              <Button onClick={addAsync}>incrementAsync</Button>
+              <Button onClick={addNUM}>addNUM</Button>
+            </div>
+            <div className={myCss.secondDiv}>
+              <MyCarousel width={500} height={300} list={[{ txt: "lable1" }, { txt: "lable2" }, { txt: "lable3" }]} />
+            </div>
+            <div className={myCss.threeDiv}>
+            <Outlet />
+            </div>
+          </div>
+
+        
 
         </Content>
       </Layout>

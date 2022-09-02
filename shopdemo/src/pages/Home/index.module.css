@@ -7,3 +7,25 @@
     color: white;
     padding: 0 20px;
 }
+
+.myCentent{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.firstDiv{
+    flex-basis: 100px;
+}
+.secondDiv{
+   flex-grow: 1;  /*设置占位比例*/
+   /* flex: 1; */
+}
+.threeDiv{
+     flex-basis: 50px;  /*设置后占的位置大小 不能设置flex-grow  不设置则占原来的大小 */
+    /* flex-shrink：默认为1，
+    即 如果空间不足，该项目将缩小；
+    所有项目的flex-shrink为1：当空间不足时，缩小的比例相同；
+    flex-shrink为0：空间不足时，该项目不会缩小；
+    flex-shrink为n的项目，空间不足时缩小的比例是flex-shrink为1的n倍。 */
+}
