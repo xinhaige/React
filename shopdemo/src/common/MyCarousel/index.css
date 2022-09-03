@@ -1,28 +1,24 @@
 .content {
-    height: 300px;
-    width: 500px;
+    height:300px;
+    width:500px;
     position: relative;
     left: 20px;
     top: 20px;
     background-color: white;
     box-shadow:0px 0px 4px 1px grey;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    
+    overflow: hidden;
 }
 .lists{
-    height: 100%;
-    width: 400%;
-    display: flex;
-    justify-content: center;
+    height:100%;
+    width:400%;
     position: relative;
+    display: flex;
 }
 .list{
-    height: 300px;
-    width:500px;
+    height: 100%;
+    width:100%;
     text-align: center;
-    line-height: 300px ;
-    font-size: 40px;
+    line-height: 100% ;
 }
 .lables{
     height: 15px;
@@ -42,6 +38,7 @@
     background-color: gray;
     opacity: 0.5;
     cursor: pointer;
+    margin: 0 2px;
 }
 .lableActive{
     background-color: black;
@@ -60,6 +57,7 @@ input[type="radio"]{
     margin-top: -10px;
     left: 5px;
     cursor: pointer;
+    z-index: 1001;
 }
 
 .spanRight{
@@ -70,6 +68,7 @@ input[type="radio"]{
     margin-top: -10px;
     right: 5px;
     cursor: pointer;
+    z-index: 1001;
 }
 
 
@@ -87,4 +86,7 @@ input[type="radio"]{
 }
 .bg3{
     background-color: blue;
+}
+.bg0{
+    background-color: gray;
 }

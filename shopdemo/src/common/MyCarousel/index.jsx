@@ -6,100 +6,71 @@ import {
 } from '@ant-design/icons';
 
 export default function MyCarousel(props) {
-  debugger
-  let {list,width,height}=props;
-  const count=list.length;//总个数
-  width=width==undefined?500:width;//宽
-  height=height==undefined?300:height;//高
+  let { list, width, height } = props;
+  const count = list.length;//总个数
+  width = width == undefined ? 500 : width;//宽
+  height = height == undefined ? 300 : height;//高
 
-
-  const lists = useRef()
-  let [state, setState] = useState({ isspen: false, lableName: '' ,isAni:true})
-  let num = 1;
-
+  let [currentIndex, setX] = useState(1);
+  let [isPlay, setPlay] = useState(true);
+  function prevDiv() {//上一个
+    currentIndex=currentIndex<=0?3:currentIndex-1;
+    setX(currentIndex);
+  }
+  function nextDiv() {//下一个
+    currentIndex=currentIndex-3>=0?0:currentIndex+1;
+    setX(currentIndex);
+  }
   useEffect(() => {
-    if(state.isAni){
-      let timer=setInterval(() => {
-        lists.current.style.transition = '0.5s';
-        lists.current.style.transform = 'translateX(-' + (num - 1) * width + 'px)'
-        num++;
-      }, 1500)
-       return ()=>{
+    if(isPlay){
+      let timer=setInterval(()=>{
+        nextDiv();
+      },1500)
+      return ()=>{
         clearInterval(timer);
-       }
+      }
     }
-  }, [state.isAni])
+  }, [isPlay])
 
-  function transitionEnd() {
-    if (num >count+1) {
-      lists.current.style.transition = 'none';
-      lists.current.style.transform ='translateX(0px)'
-      num = 2
-    }
+  function mouseEnter() {//鼠标进入div
+    setPlay(false)
   }
-  function mouseEnter() {
-    setState({ isspen: true,isAni:false })
+  function mouseLeave() {//鼠标离开div
+    setPlay(true)
   }
-  function mouseLeave() {
-    setState({ isspen: false, lableName: "" ,isAni:true})
+  const radioClick = (enent, obj) => {//中间lable
+    setX(obj);
   }
 
-  function prevDiv() {
-    num = num ==1 ? count : num-1;
-    currentDiv();
-  }
-  function nextDiv() {
-    num = num ==count ? 1 : num+1;
-    currentDiv();
-  }
-
-  const radioClick = (enent, obj) => {
-    num = obj;
-    currentDiv();
-    setState({ lableName: "radio" + obj })
-  }
-
-  function currentDiv() {
-    lists.current.style.transition = '0.5s';
-    lists.current.style.transform = 'translateX(-' + (num - 1) * width + 'px)'
-  }
   return (
-    <div className='content' onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
-      <div className='lists' ref={lists} onTransitionEnd={transitionEnd} >
-        {/* <div className='list bg1'>1</div>
+    <div className='content' 
+    style={{ width: width + "px", height: height + "px" }}
+     onMouseEnter={mouseEnter} 
+     onMouseLeave={mouseLeave}>
+      <div className='lists'
+        style={{ transform: "translateX(-" + (currentIndex * width) + "px)", transition: "1s" }}>
+        <div className='list bg1'>1</div>
         <div className='list bg2'>2</div>
         <div className='list bg3'>3</div>
-        <div className='list bg1'>1</div> */}
-        {
-          list.map((item,index)=>{
-            return  <div className={'list bg'+((index+1)>3?index-2:index+1)}>{item.txt}</div>
-          })
-        }
-        <div className='list bg1'>{list[0].txt}</div>
-
+        <div className='list bg4'>4</div>
       </div>
 
-      {/* <input id="radio1" name='radio' type="radio" onClick={(event => { radioClick(event, 1) })} />
-      <input id="radio2" name='radio' type="radio" onClick={(event => { radioClick(event, 2) })} />
-      <input id="radio3" name='radio' type="radio" onClick={(event => { radioClick(event, 3) })} /> */}
-      {list.map((item,index)=>{
-            return <input id={"radio"+(index+1)} name='radio' type="radio" onClick={(event => { radioClick(event, index+1) })} />
-          })}
+      <input id="radio1" name='radio' type="radio" onClick={(event => { radioClick(event, 0) })} />
+      <input id="radio2" name='radio' type="radio" onClick={(event => { radioClick(event, 1) })} />
+      <input id="radio3" name='radio' type="radio" onClick={(event => { radioClick(event, 2) })} />
+      <input id="radio4" name='radio' type="radio" onClick={(event => { radioClick(event, 3) })} />
+
 
       <div className='lables'>
-        {/* <label for="radio1" className={state.lableName === "radio1" ? "lable lableActive" : "lable"} />
-        <label for="radio2" className={state.lableName === "radio2" ? "lable lableActive" : "lable"} />
-        <label for="radio3" className={state.lableName === "radio3" ? "lable lableActive" : "lable"} /> */}
-         {
-          list.map((item,index)=>{
-            return <label for={"radio"+(index+1) } className={state.lableName === "radio"+(index+1) ? "lable lableActive" : "lable"} />
-          })
-        }
+        <label for="radio1" className={currentIndex===0?"lable lableActive":"lable"} />
+        <label for="radio2" className={currentIndex===1?"lable lableActive":"lable"} />
+        <label for="radio3" className={currentIndex===2?"lable lableActive":"lable"} />
+        <label for="radio4" className={currentIndex===3?"lable lableActive":"lable"} />
       </div>
-      <span className='spanLeft' onClick={prevDiv} style={{ visibility: state.isspen ? 'visible' : 'hidden' }}>
+      <span className='spanLeft' onClick={prevDiv} style={{ visibility: isPlay?"hidden":"visible" }}>
         <LeftOutlined />
       </span>
-      <span className='spanRight' onClick={nextDiv} style={{ visibility: state.isspen ? 'visible' : 'hidden' }}>
+      <span className='spanRight' onClick={nextDiv} style={{ visibility:isPlay?"hidden":"visible"  }}>
         <RightOutlined />
       </span>
     </div>

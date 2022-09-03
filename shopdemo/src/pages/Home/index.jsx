@@ -20,7 +20,7 @@ export default function Index() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log(count);
+    // console.log(count);
   }, [count])
 
   function add() {
@@ -67,7 +67,7 @@ export default function Index() {
               <Button onClick={addNUM}>addNUM</Button>
             </div>
             <div className={myCss.secondDiv}>
-              <MyCarousel width={500} height={300} list={[{ txt: "lable1" }, { txt: "lable2" }, { txt: "lable3" }]} />
+              <MyCarousel width={500} height={300} list={[{ txt: "lable1" }, { txt: "lable2" }, { txt: "lable3" }, { txt: "lable4" }]} />
             </div>
             <div className={myCss.threeDiv}>
             <Outlet />
