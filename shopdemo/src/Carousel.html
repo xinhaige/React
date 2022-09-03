@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .content {
+    height:300px;
+    width:500px;
+    position: relative;
+    left: 20px;
+    top: 20px;
+    background-color: white;
+    box-shadow:0px 0px 4px 1px grey;
+    overflow: hidden;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.lists{
+    height:100%;
+    width:600%;
+    position: relative;
+    display: flex;
+    transition: 0.5s;
+    transform: translateX(-500px);
+}
+.list{
+    height: 100%;
+    width:100%;
+    text-align: center;
+    line-height: 100% ;
+}
+.lables{
+    height: 15px;
+    width:100px;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: translate(-50%,0);
+}
+.lable{
+    height:10px;
+    width: 30px;
+    background-color: gray;
+    opacity: 0.5;
+    cursor: pointer;
+    margin: 0 2px;
+}
+.lableActive{
+    background-color: black;
+}
+
+input[type="radio"]{
+    display: none; 
+}
+
+
+.spanLeft{
+    height: 20px;
+    width: 20px;
+    position:absolute;
+    top: 50%;
+    margin-top: -10px;
+    left: 5px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.spanRight{
+    height: 20px;
+    width: 20px;
+    position:absolute;
+    top: 50%;
+    margin-top: -10px;
+    right: 5px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+
+.bg1{
+    background-color: antiquewhite;
+}
+
+.bg2{
+    background-color:orange;
+}
+.bg3{
+    background-color: blue;
+}
+.bg0{
+    background-color: gray;
+}
+</style>
+<body>
+    <div class='content' onmouseover="enter()" onmouseleave="leave()">
+      <div class='lists' >
+        <div class='list bg4'>4</div>
+
+        <div class='list bg1'>1</div>
+        <div class='list bg2'>2</div>
+        <div class='list bg3'>3</div>
+        <div class='list bg4'>4</div>
+
+        <div class='list bg1'>1</div>
+      </div>
+
+      <input id="radio0" name='radio' type="radio" onclick="radioClick(1)"/>
+      <input id="radio1" name='radio' type="radio" onClick="radioClick(2)"/>
+      <input id="radio2" name='radio' type="radio" onClick="radioClick(3)"/>
+      <input id="radio3" name='radio' type="radio" onClick="radioClick(4)"/>
+
+      <div class='lables isShow'>
+        <label for="radio0" class="lable"></label>
+        <label for="radio1" class="lable"></label>
+        <label for="radio2" class="lable"></label>
+        <label for="radio3" class="lable"></label>
+      </div>
+      <span class='spanLeft isShow' onclick="prevDiv()">
+        《
+      </span>
+      <span class='spanRight isShow' onclick="nextDiv()" >
+        》
+      </span>
+    </div>
+    <script>
+        let num=1;//原数据
+        let proxy=new Proxy({num},{//拦截数据
+            get: function(target, name) {
+               return num;
+             },
+             set: function (target, propKey, value, receiver) {
+                num=value;
+                nextTo();
+            }
+        })
+        
+        let timer=null;
+
+      let obj={
+        lists:document.getElementsByClassName("lists")[0],
+        lable:document.getElementsByClassName("lable"),
+        isShow:document.getElementsByClassName("isShow"),
+      }
+      
+
+      timer=setInterval(()=>{
+        proxy.num+=1
+      },1500)
+      function leave(){
+        timer=setInterval(()=>{
+            proxy.num+=1
+       },1500)
+       unshow();
+      }
+      function enter(){
+        clearInterval(timer);
+        show();
+      }
+      function show(){
+        for (let index = 0; index < obj.isShow.length; index++) {
+            obj.isShow[index].style.visibility=""
+        }
+      }
+      function unshow(){
+        for (let index = 0; index < obj.isShow.length; index++) {
+            obj.isShow[index].style.visibility="hidden"
+        }
+      }
+
+      function radioClick(parm){
+        proxy.num=parm;
+      }
+      function nextDiv(){
+        proxy.num+=1
+      }
+      function prevDiv(){
+        proxy.num-=1
+      }
+
+     
+
+      function nextTo(){
+        if(num==5){
+            obj.lists.style.transition=`none`
+            obj.lists.style.transform=`translateX(0)`;
+            setTimeout(()=>{
+                obj.lists.style.transition=`0.5s`
+                proxy.num=1;
+                obj.lists.style.transform=`translateX(-${num*500}px)`
+            },0)
+         }
+         else if (num==0){
+            obj.lists.style.transition=`none`
+            obj.lists.style.transform=`translateX(-${5*500}px)`;
+
+            //法一
+            // setTimeout(()=>{
+            //     obj.lists.style.transition=`0.5s`
+            //     num=4
+            //     obj.lists.style.transform=`translateX(-${num*500}px)`
+            // },0)
+
+            //法二 强制渲染
+            //强制渲染dom的代码可以使用以下一些dom的属性：offsetTop, 
+            //offsetLeft, offsetWidth, offsetHeight
+            // scrollTop, scrollLeft, scrollWidth, scrollHeight
+            // clientTop, clientLeft, clientWidth, clientHeight
+            // js访问到以上dom属性的时候，它都会先渲染dom文档，再获得相关的属性。所以，就起到了强制渲染的作用
+            obj.lists.clientWidth;
+            obj.lists.style.transition=`0.5s`
+
+            proxy.num=4;
+         }else{
+            obj.lists.style.transform=`translateX(-${num*500}px)`
+         }
+         setLableStyle();
+       }
+      function setLableStyle(){
+        for (let index = 0; index < obj.lable.length; index++) {
+            if(proxy.num-1==index){
+                obj.lable[index].className="lableActive lable"
+            }else{
+                obj.lable[index].className="lable"
+            }
+        }
+      }
+    </script>
+</body>
+</html>
