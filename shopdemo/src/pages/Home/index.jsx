@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { decrement, increment, incrementAsync, incrementByAmount } from '../../store/action'
 
 
-import MyCarousel from '../../common/MyCarousel'
+import MyCarousel from '../../common/MyCarousel/index2'
 export default function Index() {
   let { pathname } = useLocation();
 
