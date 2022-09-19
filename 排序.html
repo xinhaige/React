@@ -33,38 +33,52 @@
 </body>
 
 <script>
-// //快速排序
-// function first_sort(arr){
-//    let right=arr.length-1;
-//    let left=0;
-//    let current=0;
-//    for (let i = 0; i < arr.length-1; i++) {
-//       if (arr[current]) {
-        
-//       } else {
-        
-//       }
-    
-//    }
-// }
-
-
-//冒泡排序
- let myArr=[2,5,4,8,9,3,1,6,0]
-function pp_sort(arr){
-  let box=0;
-   for (let index = arr.length-1; index >=0; index--) {
-     for (let j =0; j < index; j++) {
-      if (arr[j]>=arr[j+1]) {
-          box=arr[j];
-          arr[j]=arr[j+1];
-            arr[j+1]=box;
-        }
+//快速排序
+let myArr=[2,5,4,8,9,3,1,6,0]
+function first_sort(arr,start,end){
+  let tmp=arr[start];
+  while (start<end) {
+     while (start<end&&arr[end]>=tmp) {
+       end--;
      }
-   }
-   return arr;
+     arr[start]=arr[end];
+     while (start<end&&arr[start]<=tmp) {
+      start++;
+     }
+     arr[end]=arr[start];
+
+     arr[start]=tmp;
+  }
+  return start;
 }
-let newarr=pp_sort(myArr);
-console.log(newarr);
+
+function resultSort(arr,start,end){
+   if (start<end) {
+     let mid= first_sort(arr,start,end);
+     resultSort(arr,start,mid-1)
+     resultSort(arr,mid+1,end)
+   }
+}
+resultSort(myArr,0,myArr.length-1)
+console.log(myArr)
+
+
+// //冒泡排序
+//  let myArr=[2,5,4,8,9,3,1,6,0]
+// function pp_sort(arr){
+//   let box=0;
+//    for (let index = arr.length-1; index >=0; index--) {
+//      for (let j =0; j < index; j++) {
+//       if (arr[j]>=arr[j+1]) {
+//           box=arr[j];
+//           arr[j]=arr[j+1];
+//             arr[j+1]=box;
+//         }
+//      }
+//    }
+//    return arr;
+// }
+// let newarr=pp_sort(myArr);
+// console.log(newarr);
 </script>
 </html>
