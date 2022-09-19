@@ -33,8 +33,59 @@
 </body>
 
 <script>
+  let div=document.getElementsByClassName("contanter")[0];
+ let myArr=[2,5,4,8,9,3,1,6,0]
+
+
+// //冒泡排序
+// function pp_sort(arr){
+//   let box=0;
+//    for (let index = arr.length-1; index >=0; index--) {
+//      for (let j =0; j < index; j++) {
+//       if (arr[j]>=arr[j+1]) {
+//           box=arr[j];
+//           arr[j]=arr[j+1];
+//             arr[j+1]=box;
+//         }
+//      }
+//    }
+//    return arr;
+// }
+// let newarr=pp_sort(myArr);
+// div.innerHTML="结果："+myArr.join(" , ")
+
+// //选择排序
+// function select_sort(arr){
+//    for (let index = 0; index<arr.length-1; index++) {
+//      for (let j = index; j < arr.length; j++) {
+//        if(arr[index]>=arr[j]){
+//           let tmp=arr[index];
+//           arr[index]=arr[j]
+//           arr[j]=tmp
+//        }
+//      }
+//    }
+// }
+// select_sort(myArr);
+// div.innerHTML="结果："+myArr.join(" , ")
+
+// //插入排序
+// function select_sort(arr){
+//    for (let index = 1; index<arr.length; index++) {
+//        let tmp=arr[index]
+//        let j=index-1;
+//        while (j>=0&& arr[j]>=tmp) {
+//           arr[j+1]=arr[j]
+//           arr[j]=tmp
+//           j--;
+//        }
+      
+//    }
+// }
+// select_sort(myArr);
+// div.innerHTML="结果："+myArr.join(" , ")
+
 //快速排序
-let myArr=[2,5,4,8,9,3,1,6,0]
 function first_sort(arr,start,end){
   let tmp=arr[start];
   while (start<end) {
@@ -60,25 +111,6 @@ function resultSort(arr,start,end){
    }
 }
 resultSort(myArr,0,myArr.length-1)
-console.log(myArr)
-
-
-// //冒泡排序
-//  let myArr=[2,5,4,8,9,3,1,6,0]
-// function pp_sort(arr){
-//   let box=0;
-//    for (let index = arr.length-1; index >=0; index--) {
-//      for (let j =0; j < index; j++) {
-//       if (arr[j]>=arr[j+1]) {
-//           box=arr[j];
-//           arr[j]=arr[j+1];
-//             arr[j+1]=box;
-//         }
-//      }
-//    }
-//    return arr;
-// }
-// let newarr=pp_sort(myArr);
-// console.log(newarr);
+div.innerHTML="结果："+myArr.join(" , ")
 </script>
 </html>
