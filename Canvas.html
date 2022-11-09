@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #mycanvas {
+      border: 1px red solid;
+    }
+  </style>
+  <script>
+    let canvas;
+    let ctx;
+    window.onload = function () {
+      var inp = document.getElementById("input");
+       canvas = document.getElementById("mycanvas");
+      ctx = canvas.getContext("2d");
+
+      console.log(11)
+
+      let isEnter = false;
+      let isPress = false;
+
+      ctx.beginPath();
+      ctx.moveTo(10, 10);
+      ctx.lineTo(50, 10);
+      ctx.lineTo(50, 50);
+      ctx.lineTo(10, 50);
+      ctx.lineTo(10, 10);
+      ctx.stroke();
+
+      canvas.addEventListener("mouseenter", () => {
+        isEnter = true;
+        console.log("enter");
+      });
+      canvas.addEventListener("mouseleave", () => {
+        isEnter = false;
+        isPress = false;
+        console.log("mouseleave");
+      });
+      canvas.addEventListener("mousedown", (e) => {
+        isPress = true;
+        ctx.beginPath();
+        ctx.moveTo(e.offsetX, e.offsetY);
+        inp.innerText = e.offsetX + '--' + e.offsetY;
+      });
+      canvas.addEventListener("mouseup", () => {
+        isPress = false;
+        console.log("mouseup");
+      });
+      canvas.addEventListener("mousemove", (e) => {
+        //main Fun
+        if (isEnter == true && isPress == true) {
+          ctx.save();
+          ctx.strokeStyle = "red";
+          ctx.lineTo(e.offsetX, e.offsetY);
+          inp.innerText = e.offsetX + '--' + e.offsetY;
+          ctx.stroke();
+          ctx.restore();
+        }
+      });
+    }
+    function Clear() {
+        ctx.clearRect(0, 0, 500, 400)
+      }
+      function CImg() {
+        var img = document.getElementById("img");
+        img.src=canvas.toDataURL();
+      }
+  </script>
+</head>
+
+<body>
+  <div class="canvas">
+    <h1>mycanvas</h1>
+    <div id="input">{{ left }}--{{ right }} </div>
+    <div id="btn"><button onclick="Clear()">清楚</button><button onclick="CImg()">img</button></div>
+    <canvas id="mycanvas" width="500" height="400"> </canvas>
+  </div>
+  <img id="img" src="" alt="">
+</body>
+
+</html>
