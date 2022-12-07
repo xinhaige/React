@@ -1,0 +1,23 @@
+方法一
+1、程序引用Nuget：Microsoft.Extensions.Hosting.WindowsServices 已
+2、打开 Program.cs ，在Host Create 后新增 .UseWindowsService();
+
+  public static IHostBuilder CreateHostBuilder(string[] args) =>
+       Host.CreateDefaultBuilder(args)
+           .ConfigureWebHostDefaults(webBuilder =>
+           {
+               webBuilder.UseStartup<Startup>();
+           })
+           .UseWindowsService();
+           
+注册服务 sc create 服务名称 binPath= 路径名   例子 sc create mesapi binPath= c:\mesapi\flc.webapi.lite.exe
+
+方法二
+1.下载 nssm 插件 
+
+2.在D:\安装包\nssm-2.24\win64 下 
+创建服务 nssm install 服务名称  例子 nssm install mesapi
+弹出的窗口  第一个是dotnet.exe 文件路径（C:\Program Files\dotnet\dotnet.exe 或者cmd下 where dotnet可查出路径）
+           第二个是 项目根目录   例子C:\mesapi32
+           第三个是 dll文件     例子flc.webapi.lite.dll
+
